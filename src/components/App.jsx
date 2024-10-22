@@ -69,8 +69,6 @@ function App() {
     api
       .getUserInfo(jwt)
       .then(({ username, email }) => {
-        // Se a resposta for bem-sucedida, permita o login do usuário, salve seus
-        // dados no estado e mande ele para /ducks.
         setIsLoggedIn(true);
         setUserData({ username, email });
       })
@@ -83,7 +81,7 @@ function App() {
         path="/ducks"
         element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <Ducks />
+            <Ducks setIsLoggedIn={setIsLoggedIn} />
           </ProtectedRoute>
         }
       />
@@ -92,7 +90,7 @@ function App() {
         path="/my-profile"
         element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <MyProfile userData={userData} />
+            <MyProfile userData={userData} setIsLoggedIn={setIsLoggedIn} />
           </ProtectedRoute>
         }
       />
