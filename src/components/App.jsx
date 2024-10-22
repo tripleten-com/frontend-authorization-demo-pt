@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import Ducks from "./Ducks";
 import Login from "./Login";
 import MyProfile from "./MyProfile";
@@ -6,6 +8,7 @@ import Register from "./Register";
 import "./styles/App.css";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <Routes>
       <Route path="/ducks" element={<Ducks />} />
@@ -24,6 +27,16 @@ function App() {
           <div className="registerContainer">
             <Register />
           </div>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          isLoggedIn ? (
+            <Navigate to="/ducks" replace />
+          ) : (
+            <Navigate to="/login" replace />
+          )
         }
       />
     </Routes>
