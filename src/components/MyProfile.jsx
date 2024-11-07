@@ -2,7 +2,7 @@ import NavBar from "./NavBar";
 import "./styles/MyProfile.css";
 
 function MyProfile({
-  userData = { username: "Username here", email: "Email here" },
+  userData = { username: "Nome de usuário aqui", email: "E-mail aqui" },
 }) {
   const { username, email } = userData;
   return (
